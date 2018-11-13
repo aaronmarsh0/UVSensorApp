@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">UVSensor</string>
+    <string name="title_section1">Weather</string>
+    <string name="title_main_section">Main Layout Page</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
