@@ -135,45 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-//        JsonObjectRequest jor = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-////                try {
-////                    //JSONObject main_object = response.getJSONObject("main");
-////                    JSONArray array = response.getJSONArray("uv");
-////                    JSONObject obj = array.getJSONObject(0);
-////                    String uvindexday1 = String.valueOf(obj.getDouble("value"));
-////                    JSONObject obj2 = array.getJSONObject(1);
-////                    String uvindexday2 = String.valueOf(obj2.getDouble("value"));
-////                    JSONObject obj3 = array.getJSONObject(2);
-////                    String uvindexday3 = String.valueOf(obj3.getDouble("value"));
-////                    JSONObject obj4 = array.getJSONObject(0);
-////                    String uvindexday4 = String.valueOf(obj4.getDouble("value"));
-////                    JSONObject obj5 = array.getJSONObject(0);
-////                    String uvindexday5 = String.valueOf(obj5.getDouble("value"));
-////
-////                    day1.setText(uvindexday1);
-////                    day2.setText(uvindexday2);
-////                    day3.setText(uvindexday3);
-////                    day4.setText(uvindexday4);
-////                    day5.setText(uvindexday5);
-////                }
-////                catch(JSONException e){
-////                    e.printStackTrace();
-////                }
-//                day1.setText("Response: " + response.toString());
-//                day2.setText("HELLO WORLD");
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//
-//            }
-//        }
-//        );
+        
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(jar);
 
