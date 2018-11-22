@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">UVSensor</string>
+    <string name="app_name">UVsensor</string>
     <string name="title_section1">Weather</string>
-    <string name="title_main_section">Main Layout Page</string>
+    <string name="title_main_section">Home Page</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="ble_not_supported">BlueTooth low energy is not supported</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

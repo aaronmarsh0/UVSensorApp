@@ -1,21 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WeatherFragment">
+    tools:context=".WeatherFragment"
+    android:background="@color/white">
 
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="weather fragment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include layout="@layout/navigation_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/uvindex5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:padding="5dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="370dp"/>
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/uvindex3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:padding="5dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="195dp"/>
+
+        <TextView
+            android:id="@+id/uvindex1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:padding="5dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/uvindex4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:padding="5dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="282.5dp"/>
+
+        <TextView
+            android:id="@+id/uvindex2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:padding = "5dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="107.5dp"/>
+    </RelativeLayout>
+
+</FrameLayout>
