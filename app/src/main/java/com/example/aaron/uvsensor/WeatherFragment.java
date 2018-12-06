@@ -56,7 +56,8 @@ public class WeatherFragment extends Fragment {
 //        day5.setText(MainActivity.list_of_uv[4]);
 
         find_weather();
-        return inflater.inflate(R.layout.fragment_weather, container, false);
+        //return inflater.inflate(R.layout.fragment_weather, container, false);
+        return view;
     }
 
     public void find_weather(){
