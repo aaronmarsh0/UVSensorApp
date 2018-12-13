@@ -34,5 +34,33 @@
             android:textAlignment="center"
             android:textSize="30sp"/>
 
+    <TextView
+        android:id="@+id/uv_string"
+        android:layout_width="match_parent"
+        android:layout_height="267dp"
+        android:layout_gravity="center_vertical"
+        android:text="0 - string"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/uv_bytes"
+        android:layout_width="match_parent"
+        android:layout_height="158dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="top"
+        android:text="0 - bytes"
+        android:textAlignment="gravity"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/refbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoText="false"
+        android:text="Refresh"
+        android:layout_gravity = "center_horizontal|bottom"
+
+        />
+
 
 </FrameLayout>
