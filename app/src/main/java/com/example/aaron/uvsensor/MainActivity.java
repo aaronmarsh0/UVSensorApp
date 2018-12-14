@@ -79,12 +79,17 @@ public class MainActivity extends AppCompatActivity {
     public byte[] mdatabyte ;
     public String mdata = "";
 
-    //private static final UUID UV_SERVICE = UUID.fromString("UUID OF THIS SERVICE");
-    private final UUID UV_SERVICE = convertFromInteger(0x1810);
-    //private static final UUID UV_DATA_CHARACTERISTIC = UUID.fromString("UUID OF CHARACTERISTIC");
-    private final UUID UV_DATA_CHARACTERISTIC = convertFromInteger(0x2A49);
+
+//    private final UUID UV_SERVICE = convertFromInteger(0x1810);
+//    private final UUID UV_DATA_CHARACTERISTIC = convertFromInteger(0x2A49);
+
+    //private  final UUID UV_SERVICE = 123456789012345678901234567890FF;
+    private final UUID UV_SERVICE1 = UUID.fromString("12345678-9012-3456-7890-1234567890FF");
+    private final UUID UV_DATA_CHARACTERISTIC = UUID.fromString("12345678-9012-3456-7890-123456789022");
+   // private  final UUID UV_DATA_CHARACTERISTIC = convertFromInteger(0x12345678901234567890123456789022);
     //private static final UUID UV_CONFIG_CHARACTERISTIC = UUID.fromString("UUID OF CHARACTERISTIC");
-    private final UUID  UV_CONFIG_CHARACTERISTIC = convertFromInteger(0x2A39);
+    //private final UUID  UV_CONFIG_CHARACTERISTIC = convertFromInteger(0x2A39);
+
     private final UUID CLIENT_CHARACTERISTIC_CONFIG_UUID = convertFromInteger(0x2902);
 
 
@@ -98,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     private SectionsStatePagerAdapter mSectionsStatePagerAdapter;
     private ViewPager mViewPager;
 
-    public UUID convertFromInteger(int i) {
+    public UUID convertFromInteger(long i) {
         final long MSB = 0x0000000000001000L;
         final long LSB = 0x800000805f9b34fbL;
         long value = i & 0xFFFFFFFF;
@@ -205,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(this, "In onpause", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "In onPause", Toast.LENGTH_SHORT).show();
         if (mBluetoothAdapter != null && mBluetoothAdapter.isEnabled()) {
             scanLeDevice(false);
         }
@@ -361,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status){
             Toast.makeText(getApplicationContext(), "In onservicesdescoverd", Toast.LENGTH_SHORT).show();
-            BluetoothGattCharacteristic characteristic = gatt.getService(UV_SERVICE).getCharacteristic(UV_CONFIG_CHARACTERISTIC);
+            BluetoothGattCharacteristic characteristic = gatt.getService(UV_SERVICE1).getCharacteristic(UV_DATA_CHARACTERISTIC);
             gatt.setCharacteristicNotification(characteristic, true);
 
             BluetoothGattDescriptor descriptor = characteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIG_UUID);
@@ -402,7 +407,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status){
-            BluetoothGattCharacteristic characteristic = gatt.getService(UV_SERVICE).getCharacteristic(UV_DATA_CHARACTERISTIC);
+            BluetoothGattCharacteristic characteristic = gatt.getService(UV_SERVICE1).getCharacteristic(UV_DATA_CHARACTERISTIC);
 
             characteristic.setValue(new byte[]{1,1});
             gatt.writeCharacteristic(characteristic);
