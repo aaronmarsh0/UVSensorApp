@@ -53,13 +53,13 @@ public class HomeFragment extends Fragment {
                 int i2 = r.nextInt(12 - 0) + 12;
                 bytesdata.setText(String.valueOf(i1));
 
-                if(mainActivity.mdata.equals("")){
-                    Stringdata.setText(String.valueOf(i2));
-//                    Stringdata.setText("00");
-                }
-                else{
-                    Stringdata.setText(mainActivity.mdata);
-                }
+//                if(mainActivity.mdata.equals("")){
+//                    Stringdata.setText(String.valueOf(i2));
+////                    Stringdata.setText("00");
+//                }
+//                else{
+//                    Stringdata.setText(mainActivity.mdata);
+//                }
             }
         });
 

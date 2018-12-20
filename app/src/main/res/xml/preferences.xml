@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<Framelayout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v7.preference.SwitchPreferenceCompat
 
-        android:defaultValue="true"
-        android:key="example_switch"
-        android:summary="@string/switch_summary"
-        android:title="@string/switch_title_bluetooth" />
-</PreferenceScreen>
+    <!--<Button-->
+        <!--android:id="@+id/Start_Scan_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:autoText="false"-->
+        <!--android:text="Start Scan"-->
+        <!--android:layout_gravity = "center_horizontal|bottom"-->
+
+        <!--/>-->
+
+
+</Framelayout>
