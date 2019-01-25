@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ import java.util.UUID;
 
 public class SettingsActivity extends AppCompatActivity {
     private Button startScanbutton;
+    private Button updateButton;
+    private TextView value;
     public static final String KEY_PREF_EXAMPLE_SWITCH = "example_switch";
     private BluetoothAdapter mBluetoothAdapter;
     private static final int REQUEST_ENABLE_BT = 1;
@@ -46,11 +49,13 @@ public class SettingsActivity extends AppCompatActivity {
     private Handler mHandler;
     private BluetoothGatt mGatt;
     private static final int  SCAN_PERIOD = 10000;
-    private final UUID SERVICE_UUID = convertFromInteger(0x1810);
-    private final UUID CHARACTERISTIC_UUID = convertFromInteger(0x2A49);
+    private final UUID SERVICE_UUID = UUID.fromString("12345678-9012-3456-7890-1234567890FF");
+    private final UUID CHARACTERISTIC_UUID = UUID.fromString("12345678-9012-3456-7890-123456789022");
     private boolean mConnected;
     private boolean mInitialised;
     private static final String TAG = "BluetoothConnection ";
+    BluetoothDevice mBluetoothDevice;
+    BluetoothGattCharacteristic mCharacteristic;
 
     private ViewPager mviewPager;
 
@@ -64,17 +69,37 @@ public class SettingsActivity extends AppCompatActivity {
 //                .commit();
 //        mviewPager = (ViewPager) findViewById(R.id.settingspage);
         startScanbutton = (Button) findViewById(R.id.Start_Scan_button);
+        updateButton = (Button) findViewById(R.id.update_value);
+        value = (TextView) findViewById(R.id.tempdisplay);
         startScanbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                startScan();
-                Log.d(TAG, "start button pressed");
+                if (hasPermissions()) {
+
+
+                    mScanResults = new HashMap<>();
+                    mBluetoothDevice = mBluetoothAdapter.getRemoteDevice("00:1E:C0:7C:0B:DB");
+                    mScanResults.put("UV_Device", mBluetoothDevice);
+                    connectDevice(mScanResults.get("UV_Device"));
+                    Log.d(TAG, "bluetooth name: " + mScanResults.get("UV_Device").getName());
+                    Log.d(TAG, "start button pressed");
+                } else {
+                    Log.d(TAG, "Permission denied");
+                }
+
             }
     });
+
+        updateButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                mGatt.readCharacteristic(mCharacteristic);
+            }
+        });
 
 
 
         BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
         mBluetoothAdapter = bluetoothManager.getAdapter();
+        Log.d(TAG, "got bluetooth adapter" + mBluetoothAdapter);
     }
 
     @Override
@@ -92,14 +117,11 @@ public class SettingsActivity extends AppCompatActivity {
             return;
         }
         Log.d(TAG,"Started scanning...");
-        List<ScanFilter> filters = new ArrayList<>();
-        ScanFilter scanFilter = new ScanFilter.Builder().setServiceUuid(new ParcelUuid(SERVICE_UUID)).build();
-        filters.add(scanFilter);
-        ScanSettings settings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_POWER).build();
         mScanResults = new HashMap<>();
         mScanCallback = new BtleScanCallback(mScanResults);
         mBluetoothLeScanner = mBluetoothAdapter.getBluetoothLeScanner();
-        mBluetoothLeScanner.startScan(filters,settings,mScanCallback);
+        //mBluetoothLeScanner.startScan(filters,settings,mScanCallback);
+        mBluetoothLeScanner.startScan(mScanCallback);
         mScanning = true;
         mHandler = new Handler();
         mHandler.postDelayed(this::stopScan, SCAN_PERIOD);
@@ -114,10 +136,12 @@ public class SettingsActivity extends AppCompatActivity {
         mScanCallback = null;
         mScanning = false;
         mHandler = null;
+        Log.d(TAG, "stopped scanning...");
     }
 
     private void scanComplete(){
         Log.d(TAG,"Scan complete...");
+        Log.d(TAG,mScanResults.toString());
         if (mScanResults.isEmpty()){
             Log.d(TAG,"Scan results are empty..");
             return;
@@ -129,7 +153,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private class BtleScanCallback extends ScanCallback {
 
-        private Map<String, BluetoothDevice> mScanResults;
+        //private Map<String, BluetoothDevice> mScanResults;
 
         BtleScanCallback(Map<String, BluetoothDevice> scanResults) {
             mScanResults = scanResults;
@@ -166,6 +190,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void connectDevice(BluetoothDevice device){
         GattClientCallback gattClientCallback = new GattClientCallback();
         mGatt = device.connectGatt(this,false,gattClientCallback);
+        Log.d(TAG, "Connecting device: " +mGatt.toString());
     }
 
     private class GattClientCallback extends BluetoothGattCallback{
@@ -196,25 +221,53 @@ public class SettingsActivity extends AppCompatActivity {
         public void onServicesDiscovered(BluetoothGatt gatt, int status){
             super.onServicesDiscovered(gatt,status);
             if (status != BluetoothGatt.GATT_SUCCESS){
+                Log.d(TAG, "GATT unsuccessful");
                 return;
             }
 
             BluetoothGattService service = gatt.getService(SERVICE_UUID);
-            BluetoothGattCharacteristic characteristic = service.getCharacteristic(CHARACTERISTIC_UUID);
-            characteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);
-            mInitialised = gatt.setCharacteristicNotification(characteristic, true);
+            Log.d(TAG, "onServiceDiscovered: " +service);
+            mCharacteristic = service.getCharacteristic(CHARACTERISTIC_UUID);
+//            characteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);
+//            mInitialised = gatt.setCharacteristicNotification(characteristic, true);
+            if (gatt.readCharacteristic(mCharacteristic)) {
+                Log.d(TAG, "readCharacteristic returned true, uuid: " + mCharacteristic.getUuid());
+
+            }else {
+                Log.d(TAG, "readCharacteristic returned false");
+            }
+            Log.d(TAG, "Value: " + mCharacteristic.getValue());
         }
 
         public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic){
+            Log.d(TAG, "onCharacteristic changed");
             super.onCharacteristicChanged(gatt,characteristic);
             byte[] messageBytes = characteristic.getValue();
             String messageString = null;
             try{
-                messageString = new String(messageBytes,"UTF-8");
+                messageString = new String(messageBytes,"ISO-8859-1");
             } catch(UnsupportedEncodingException e){
                 Log.e(TAG, "unable to convert message from bytes to string");
             }
             Log.d(TAG,"Received message: " + messageString);
+        }
+
+        public void onCharacteristicRead(BluetoothGatt gatt,
+                                         BluetoothGattCharacteristic characteristic, int status){
+
+            if (status == BluetoothGatt.GATT_SUCCESS){
+                Log.d(TAG, "onCharacteristicRead = " + characteristic.getUuid() + ", " + characteristic.getValue());
+                byte[] messageBytes = characteristic.getValue();
+                String messageString = null;
+                try{
+                    messageString = new String(messageBytes,"US-ASCII");
+                } catch(UnsupportedEncodingException e){
+                    Log.e(TAG, "unable to convert message from bytes to string");
+                }
+                Log.d(TAG,"Received message: " + messageString);
+                value.setText(messageString);
+
+            }
         }
     }
     //potentially not needed
@@ -258,5 +311,16 @@ public class SettingsActivity extends AppCompatActivity {
         final long LSB = 0x800000805f9b34fbL;
         long value = i & 0xFFFFFFFF;
         return new UUID(MSB | (value << 32), LSB);
+    }
+
+    public void readvalue(BluetoothGattCharacteristic gattCharacteristic){
+        byte[] messageBytes = gattCharacteristic.getValue();
+        String messageString = null;
+        try{
+            messageString = new String(messageBytes,"UTF-8");
+        } catch(UnsupportedEncodingException e){
+            Log.e(TAG, "unable to convert message from bytes to string");
+        }
+        Log.d(TAG,"Received message: " + messageString);
     }
 }

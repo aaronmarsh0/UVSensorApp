@@ -46,7 +46,7 @@ public class WeathertodayFragment extends Fragment implements LocationListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         txtCity = (TextView)  view.findViewById(R.id.txtCit);
-        txtLastUpdate = (TextView)  view.findViewById(R.id.txtLastUpdate);
+        //txtLastUpdate = (TextView)  view.findViewById(R.id.txtLastUpdate);
         txtDescription = (TextView)  view.findViewById(R.id.txtDescription);
         txtHumidity = (TextView)  view.findViewById(R.id.txtHumidity);
         txtTime = (TextView)  view.findViewById(R.id.txtTime);
