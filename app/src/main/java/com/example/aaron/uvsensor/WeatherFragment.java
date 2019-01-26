@@ -21,6 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +35,11 @@ public class WeatherFragment extends Fragment {
     private TextView day3;
     private TextView day4;
     private TextView day5;
+    private TextView dayName1;
+    private TextView dayName2;
+    private TextView dayName3;
+    private TextView dayName4;
+    private TextView dayName5;
 
     public WeatherFragment() {
         // Required empty public constructor
@@ -47,6 +54,28 @@ public class WeatherFragment extends Fragment {
         day3 = (TextView) view.findViewById(R.id.uvindex3);
         day4 = (TextView) view.findViewById(R.id.uvindex4);
         day5 = (TextView) view.findViewById(R.id.uvindex5);
+
+        dayName1 = view.findViewById(R.id.day1name);
+        dayName2 = view.findViewById(R.id.day2name);
+        dayName3 = view.findViewById(R.id.day3name);
+        dayName4 = view.findViewById(R.id.day4name);
+        dayName5 = view.findViewById(R.id.day5name);
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(calendar.DAY_OF_WEEK);
+        int day1 = day +1;
+        int day2 = day +2;
+        int day3 = day +3;
+        int day4 = day +4;
+        int day5 = day +5;
+
+        dayName1.setText(getdaystring(day1));
+        dayName2.setText(getdaystring(day2));
+        dayName3.setText(getdaystring(day3));
+        dayName4.setText(getdaystring(day4));
+        dayName5.setText(getdaystring(day5));
+
+
         Log.d(TAG, "onCreateView: started.");
 
 //        day1.setText(MainActivity.list_of_uv[0]);
@@ -99,4 +128,26 @@ public class WeatherFragment extends Fragment {
 
     }
 
+    public String getdaystring(int day){
+        if(day >7){
+            day = day%7;
+        }
+        switch (day){
+            case Calendar.SUNDAY:
+                return "Sun";
+            case Calendar.MONDAY:
+                return "Mon";
+            case Calendar.TUESDAY:
+                return "Tues";
+            case Calendar.WEDNESDAY:
+                return "Wed";
+            case Calendar.THURSDAY:
+                return "Thurs";
+            case Calendar.FRIDAY:
+                return "Fri";
+            case Calendar.SATURDAY:
+                return "Sat";
+        }
+        return "None";
+    }
 }

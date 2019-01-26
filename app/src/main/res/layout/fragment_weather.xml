@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
@@ -13,53 +13,215 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/uvindex5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5"
-            android:padding="5dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginLeft="370dp"/>
-
-        <TextView
-            android:id="@+id/uvindex3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"
-            android:padding="5dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginLeft="195dp"/>
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
 
         <TextView
             android:id="@+id/uvindex1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="249dp"
+            android:layout_marginEnd="193dp"
             android:padding="5dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginLeft="20dp"/>
+            android:text="1"
+            android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/uvindex4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"
-            android:padding="5dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginLeft="282.5dp"/>
+            android:id="@+id/day1name"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="240dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Day1"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/weatherimage1"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="240dp"
+            android:layout_marginEnd="48dp"
+            android:src="@drawable/icons8_sun_96" />
 
         <TextView
             android:id="@+id/uvindex2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="107.5dp"
+            android:layout_marginTop="331dp"
+            android:layout_marginEnd="193dp"
+            android:padding="5dp"
             android:text="2"
-            android:padding = "5dp"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/day2name"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="319dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Day2"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/weatherimage2"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="48dp"
+            android:layout_marginTop="319dp"
+            android:src="@drawable/clouds" />
+
+        <TextView
+            android:id="@+id/uvindex3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="195dp"
+            android:layout_marginTop="412dp"
+            android:layout_marginEnd="193dp"
+            android:padding="5dp"
+            android:text="3"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/day3name"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="400dp"
-            android:layout_marginLeft="107.5dp"/>
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Day3"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/weatherimage3"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="48dp"
+            android:layout_marginTop="400dp"
+            android:src="@drawable/cloudy_sunny"/>
+
+        <TextView
+            android:id="@+id/uvindex4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="282.5dp"
+            android:layout_marginTop="492dp"
+            android:layout_marginEnd="193dp"
+            android:padding="5dp"
+            android:text="4"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/day4name"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="480dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Day4"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/weatherimage4"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="480dp"
+            android:layout_marginEnd="48dp"
+            android:src="@drawable/clouds" />
+
+        <TextView
+            android:id="@+id/uvindex5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginLeft="370dp"
+            android:layout_marginTop="569dp"
+            android:layout_marginEnd="193dp"
+            android:padding="5dp"
+            android:text="5"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/day5name"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="558dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Day5"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/weatherimage5"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="558dp"
+            android:layout_marginEnd="48dp"
+            android:src="@drawable/clouds" />
+
+        <TextView
+            android:id="@+id/forecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="79dp"
+            android:layout_marginEnd="70dp"
+            android:text="UV Forecast"
+            android:textColor="@color/colorPrimary"
+            android:textSize="50dp" />
+
+
+
     </RelativeLayout>
 
-</FrameLayout>
+</RelativeLayout>
