@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DataFragment"
     android:background="@color/white">
 
@@ -11,13 +12,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DATA page"
-        android:id="@+id/data_text"
-        android:layout_gravity="center_vertical"
-        android:textAlignment="center"
-        android:textSize="30sp"/>
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="DATA page"-->
+        <!--android:id="@+id/data_text"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textSize="30sp"/>-->
 
-</FrameLayout>
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graphView"
+        android:layout_width="368dp"
+        android:layout_height="375dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_insert"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <Button
+        android:id="@+id/btn_insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="600dp"
+        android:layout_centerHorizontal="true"
+        android:text="Insert"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="68dp" />
+
+    <EditText
+        android:id="@+id/y_value"
+        android:layout_width="150dp"
+        android:layout_height="23dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="550dp"
+        android:background="@color/colorPrimary"
+        android:ems="10"
+        android:hint="Value"
+        android:textColorHint="@color/white"
+        android:inputType="numberSigned"
+        android:padding="2dp"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:textColor="@color/white"/>
+</RelativeLayout>

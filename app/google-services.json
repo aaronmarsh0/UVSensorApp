@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "634533628989",
+    "firebase_url": "https://uvsensor2-d39c6.firebaseio.com",
+    "project_id": "uvsensor2-d39c6",
+    "storage_bucket": "uvsensor2-d39c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634533628989:android:95c9eb684baa50ec",
+        "android_client_info": {
+          "package_name": "com.example.aaron.uvsensor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634533628989-3d08tmk238rrtva5ngkat73a4ch2fv35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aaron.uvsensor",
+            "certificate_hash": "5048bf44756c28ea55f5cbb79a982dc92f72a95c"
+          }
+        },
+        {
+          "client_id": "634533628989-gr3rpv3e8q6d7dfrv8uhhthimplv45gu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxpmK0OebC8NsunkhGGqzYRRXC-EZCJRw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634533628989-gr3rpv3e8q6d7dfrv8uhhthimplv45gu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
